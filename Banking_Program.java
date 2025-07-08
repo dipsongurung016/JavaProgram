@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+public class Banking_Program {
+    static Scanner scanner=new Scanner(System.in);
+
+    public static void main(String[] args){
+
+        double balance=0;
+        boolean isRunning=true;
+
+        while (isRunning) {
+            System.out.println("###############");
+            System.out.println("BANKING PROGRAM");
+            System.out.println("###############");
+            System.out.println("1.Show Balance");
+            System.out.println("2.Deposit");
+            System.out.println("3.Withdraw");
+            System.out.println("4.Exit");
+
+            System.out.print("Enter your choice: ");
+            int choice=scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> showBalance(balance);
+                case 2 -> balance += deposit();
+                case 3 -> balance-=withdraw(balance);
+                case 4 -> isRunning=false;
+                default -> System.out.println("invalid choice");
+            }
+        }
+        System.out.println("#########");
+        System.out.println("Thank You");
+        System.out.println("#########");
+
+
+        scanner.close();
+    }
+
+    static void showBalance(double balance){
+        System.out.println("$"+balance);
+    }
+    static double deposit(){
+        System.out.print("enter amount to deposit: ");
+        double deposit = scanner.nextDouble();
+        if(deposit<0){
+            System.out.println("Amount should not be negative");
+            return 0;
+        }
+        else{
+            return deposit;
+        }
+    }
+    static double withdraw(double balance){
+        System.out.print("Enter amount to withdraw: ");
+        double amount=scanner.nextDouble();
+        if(amount>balance){
+            System.out.println("Insufficient balance");
+            return 0;
+        }
+        else if(amount<0){
+            System.out.println("cannot withdraw negative balance");
+            return 0;
+        }
+        else{
+            return amount;
+        }
+    }
+
+}
